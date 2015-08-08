@@ -61,7 +61,7 @@ Fixed Bugs:
 New Feature:
 
 1. VoIP音视频呼叫
-1. 可以进行实时对讲、语音会议了
+2. 可以进行实时对讲、语音会议了
 
 ### Version: 5.0.3
 Fixed Bugs:
