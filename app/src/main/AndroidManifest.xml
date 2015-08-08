@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yuntongxun.ecdemo" >
+    // 允许程序打开网络sockets
+    <uses-permission android:name="android.permission.INTERNET" />
+    // 允许程序访问有关的网络信息
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    // 允许程序访问Wi-Fi网络状态信息
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    // 允许应用写（非读）用户的外部存储器
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    // 允许读取电话的状态
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    // 允许一个程序获取信息有关当前或最近运行的任务，一个缩略的任务状态，是否活动等等
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    // 允许程序录制音频
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    // 允许应用程序修改全局声音设置的权限
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    // GPS定位权限(非必选，由应用选择是否需要)
+    // 允许一个程序访问CellID或WiFi热点来获取粗略的位置
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    // 允许一个程序访问精良位置(如GPS)
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    // 允许程序读取用户联系人数据(非必选，由应用选择是否需要)
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    // 允许访问振动设备(非必选,由应用选择是否需要)
+    <uses-permission android:name="android.permission.VIBRATE" />
+    // 允许程序禁用键盘锁(非必选,由应用选择是否需要)
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    // 允许使用PowerManager的WakeLocks保持进程在休眠时从屏幕消失(非必选,由应用选择是否需要)
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    // 允许程序屏幕波或和更多常规的访问帧缓冲数据
+    <uses-permission android:name="android.permission.READ_FRAME_BUFFER" />
+
+    // 自定义实现Application
+    <application
+        android:name=".ECApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/LauncherTheme" >
+        <meta-data
+            android:name="ALPHA"
+            android:value="true" />
+        // 以下两项为友盟统计
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="551bf59dfd98c5b39e002032" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="yuntongxun_im_5.0.1b" />
+        // Demo主程序路口
+        <activity
+            android:name=".ui.LauncherActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        // ECSDK核心服务类
+        <service
+            android:name="com.yuntongxun.ecsdk.ECClientService"
+            android:enabled="true"
+            android:exported="false"/>
+        // 登陆界面
+        <activity
+            android:name=".ui.account.LoginActivity"
+            android:label="@string/login_title_activity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        // 会话消息聊天主界面
+        <activity
+            android:name=".ui.chatting.ChattingActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        // 联系人详情选项卡
+        <activity
+            android:name=".ui.contact.ContactDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        // 手机系统联系人
+        <activity
+            android:name=".ui.contact.MobileContactActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        // 发送预览图片
+        <activity
+            android:name=".ui.chatting.ImagePreviewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:process=":tools"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent" />
+        // 查看聊天图片
+        <activity
+            android:name=".ui.chatting.ImageGalleryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/CCPTheme.Holo.Transparent"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.chatting.ImageGralleryPagerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        // 文件浏览器
+        <activity
+            android:name=".ui.plugin.FileExplorerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 群组
+        <activity
+            android:name=".ui.group.CreateGroupActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        // 联系人选择
+        <activity
+            android:name=".ui.contact.ContactSelectListActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        // 手机联系人选择
+        <activity
+            android:name=".ui.contact.MobileContactSelectActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        // 设置页面
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.contact.GroupCardSelectUI"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".ui.group.GroupInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.group.SearchGroupActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_search_group" >
+        </activity>
+        <activity
+            android:name=".ui.group.BaseSearch"
+            android:label="@string/title_activity_search_group"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name=".ui.settings.EditConfigureActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_edit_configure" >
+        </activity>
+        <activity
+            android:name=".ui.group.ApplyWithGroupPermissionActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.group.GroupNoticeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.settings.LoginSettingActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_login_setting" >
+        </activity>
+        <activity
+            android:name=".ui.settings.SettingPersionInfoActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
+            android:label="@string/title_activity_setting_persion_info" >
+        </activity>
+        <activity
+            android:name=".ui.contact.AtSomeoneUI"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+
+        // VoIP 呼叫界面
+        <activity
+            android:name=".ui.voip.VoIPCallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="con.yuntongxun.ecdemo.intent.ACTION_VOICE_CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.voip.VideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            <intent-filter>
+                <action android:name="con.yuntongxun.ecdemo.intent.ACTION_VIDEO_CALL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        // 实时对讲列表
+        <activity
+            android:name=".ui.interphone.InterPhoneListActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 实时对讲房间
+        <activity
+            android:name=".ui.interphone.InterPhoneChatActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 会议列表
+        <activity
+            android:name=".ui.meeting.MeetingListActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 语音会议
+        <activity
+            android:name=".ui.meeting.VoiceMeetingActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 创建语音群聊
+        <activity
+            android:name=".ui.meeting.CreateVoiceMeetingActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 会议成员的管理
+        <activity
+            android:name=".ui.meeting.VoiceMeetingMemberManager"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+        // 外呼邀请会议成员
+        <activity
+            android:name=".ui.meeting.InviteByPhoneCall"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
+    </application>
+
+</manifest>
