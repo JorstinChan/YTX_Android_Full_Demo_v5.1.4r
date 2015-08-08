@@ -52,8 +52,18 @@ mInitParams.setAuthType(ECInitParams.LoginAuthType.PASSWORD_AUTH);
 ```
 
 # Release Note
+### Current Version: 5.1.4
+Fixed Bugs:
 
-### Current Version: 5.0.3
+1. 修复5.0.3 bugs
+2. 修复SDK注册失败问题
+
+New Feature:
+
+1、VoIP音视频呼叫
+2、可以进行实时对讲、语音会议了
+
+### Version: 5.0.3
 Fixed Bugs:
 
 1. 修复5.0.2 bugs
