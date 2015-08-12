@@ -85,6 +85,13 @@ New Feature:
 7. 系统通讯录变化监听同步；
 8. 手动点击“网络连接失败”条后重连
 
+应用混淆配置
+
+```java
+-libraryjars YTX_Android_Full_SDK_{$version}.jar
+-keep class com.yuntongxun.ecsdk.** {*; }
+-keep class org.webrtc.** { *;}
+```
 
 License
 ===
